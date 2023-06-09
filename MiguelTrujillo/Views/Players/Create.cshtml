@@ -1,0 +1,63 @@
+﻿@model MiguelTrujillo.Models.Player
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Player</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="kindof" class="control-label">Register Type</label>
+                <select id="kindof" name="kindof" class="form-control">
+                    <option value="RegisterSnatch">Register Snatch</option>
+                    <option value="RegisterCleanAndJerk">Register Clean and Jerk</option>
+                </select>  
+                
+            </div>
+            <div class="form-group">
+                <label for="weight" class="control-label">Weight</label>
+                <input type="number" id="weight" name="weight" class="form-control" />
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            var comboBox = $("#kindof");
+            var kindofHidden = $("#kindof-hidden")
+
+            comboBox.on("change", function () {
+                kindofHidden.val(comboBox.val());
+            });
+        });
+    </script>
+}
